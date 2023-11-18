@@ -35,9 +35,26 @@ class User:
         self.pounds = user_info["pounds"]
         self.age = user_info["age"]
         self.mode = user_info["mode"]
-    
-    def user_stats(self):
-         print(f"Generate a {self.mode} plan for a {self.age} year old {self.sex} with a height of {self.feet} feet and {self.inches} inches weighing {self.pounds} pounds.")
+        self.prompt = (f"Generate a {self.mode} plan for a {self.age} year old {self.sex} with a height of {self.feet} feet and {self.inches} inches weighing {self.pounds} pounds.")
+
+        
+    def generate_workout_plan(self):
+         print("What are your fitness goals? - (weightloss, strength, hypertropy)")
+         fitness_goals  = input()
+         print("On a scale of 1-5, What's your current fitness level?")
+         fitness_level = int(input())
+         print("What is your current exercise program?")
+         current_program = input()
+         print("How many days would you like to workout?")
+         weekly_sessions = int(input())
+         print("Will you be going to a gym or working out at home? \n If at home, please tell us what type of equipment you have access to.")
+         eqpmnt_situation = input()
+
+
+    def report_user_stats(self):
+         print(self.prompt)
+
+   
     
 
 #Create methods for workout and diet to gather more refined info
@@ -45,7 +62,13 @@ class User:
 def main():
    user_info = gather_info()
    new_user = User(user_info)
-   new_user.user_stats()
+   new_user.report_user_stats()
+
+   if new_user.mode.lower() == "workout":
+        new_user.generate_workout_plan()
+   elif new_user.mode.lower() == "diet":
+        new_user.generate_diet_plan()
+
 
 
 
